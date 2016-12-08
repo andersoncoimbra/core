@@ -1,13 +1,3 @@
-VERSION 1.0 CLASS
-BEGIN
-  MultiUse = -1  'True
-END
-Attribute VB_Name = "Plan2"
-Attribute VB_GlobalNameSpace = False
-Attribute VB_Creatable = False
-Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = True
-
 
 Public Sub Consolidado()
 Dim M As Worksheet
@@ -17,7 +7,7 @@ Set Work = Application.ActiveWorkbook
 Dim linha As Integer
 linha = 2
 
-'Indice da planilha para inicio da consolidaÁ„o
+'Indice da planilha para inicio da consolida√ß√ßo
 indice = 5
 
 For i = indice To Work.Sheets.Count
@@ -124,104 +114,104 @@ If verificaHorario("B35", "C35", "B36", "C36", i) Then
 End If
 
 
-'TerÁa Feira
+'Ter√ßa Feira
 '-----------------------------
 'Manha
 '-----------------------------
-'Verificando TerÁa Feira 08:00 - 08:50
+'Verificando Ter√ßa Feira 08:00 - 08:50
 '-----------------------------
 If verificaHorario("D3", "E3", "D4", "E4", i) Then
-    If Consolida("D3", "E3", "D4", "E4", i, linha, "TerÁa Feira", "08:00-08:50") Then
+    If Consolida("D3", "E3", "D4", "E4", i, linha, "Ter√ßa Feira", "08:00-08:50") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando TerÁa Feira 08:50 - 09:40
+'Verificando Ter√ßa Feira 08:50 - 09:40
 '-----------------------------
 If verificaHorario("D5", "E5", "D6", "E6", i) Then
-    If Consolida("D5", "E5", "D6", "E6", i, linha, "TerÁa Feira", "08:50-09:40") Then
+    If Consolida("D5", "E5", "D6", "E6", i, linha, "Ter√ßa Feira", "08:50-09:40") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'VVerificando TerÁa Feira 10:00 - 10:50
+'VVerificando Ter√ßa Feira 10:00 - 10:50
 '-----------------------------
 If verificaHorario("D7", "E7", "D8", "E8", i) Then
-   If Consolida("D7", "E7", "D8", "E8", i, linha, "TerÁa Feira", "10:00-10:50") Then
+   If Consolida("D7", "E7", "D8", "E8", i, linha, "Ter√ßa Feira", "10:00-10:50") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando TerÁa Feira 10:50 - 11:40
+'Verificando Ter√ßa Feira 10:50 - 11:40
 '-----------------------------
 If verificaHorario("D9", "E9", "D10", "E10", i) Then
-   If Consolida("D7", "E7", "D8", "E8", i, linha, "TerÁa Feira", "10:50-11:40") Then
+   If Consolida("D7", "E7", "D8", "E8", i, linha, "Ter√ßa Feira", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando TerÁa Feira 11:40 - 12:30
+'Verificando Ter√ßa Feira 11:40 - 12:30
 '-----------------------------
 If verificaHorario("D11", "E11", "D12", "E12", i) Then
-   If Consolida("D11", "E11", "D12", "E12", i, linha, "TerÁa Feira", "11:40-12:30") Then
+   If Consolida("D11", "E11", "D12", "E12", i, linha, "Ter√ßa Feira", "11:40-12:30") Then
     linha = linha + 1
     End If
 End If
 
 'Noite
 '-----------------------------
-'Verificando TerÁa Feira 18:00 - 18:50
+'Verificando Ter√ßa Feira 18:00 - 18:50
 '-----------------------------
 If verificaHorario("D25", "E25", "D26", "E26", i) Then
-   If Consolida("D25", "E25", "D26", "E26", i, linha, "TerÁa Feira", "18:00-18:50") Then
+   If Consolida("D25", "E25", "D26", "E26", i, linha, "Ter√ßa Feira", "18:00-18:50") Then
     linha = linha + 1
     End If
 End If
 '-----------------------------
-'Verificando TerÁa Feira 18:50 - 19:40
+'Verificando Ter√ßa Feira 18:50 - 19:40
 '-----------------------------
 If verificaHorario("D27", "E27", "D28", "E28", i) Then
-   If Consolida("D27", "E27", "D28", "E28", i, linha, "TerÁa Feira", "18:50-19:40") Then
+   If Consolida("D27", "E27", "D28", "E28", i, linha, "Ter√ßa Feira", "18:50-19:40") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando TerÁa Feira  19:40 - 20:30
+'Verificando Ter√ßa Feira  19:40 - 20:30
 '-----------------------------
 If verificaHorario("D29", "E29", "D30", "E30", i) Then
-   If Consolida("D29", "E29", "D30", "E30", i, linha, "TerÁa Feira", "19:40-20:30") Then
+   If Consolida("D29", "E29", "D30", "E30", i, linha, "Ter√ßa Feira", "19:40-20:30") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando TerÁa Feira 20:40 - 21:30
+'Verificando Ter√ßa Feira 20:40 - 21:30
 '-----------------------------
 If verificaHorario("D31", "E31", "D32", "E32", i) Then
-   If Consolida("D31", "E31", "D32", "E32", i, linha, "TerÁa Feira", "20:40-21:30") Then
+   If Consolida("D31", "E31", "D32", "E32", i, linha, "Ter√ßa Feira", "20:40-21:30") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando TerÁa Feira 21:30 - 22:20
+'Verificando Ter√ßa Feira 21:30 - 22:20
 '-----------------------------
 If verificaHorario("D33", "E33", "D34", "E34", i) Then
-   If Consolida("D33", "E33", "D34", "E34", i, linha, "TerÁa Feira", "21:30-22:20") Then
+   If Consolida("D33", "E33", "D34", "E34", i, linha, "Ter√ßa Feira", "21:30-22:20") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando TerÁa Feira 22:20 - 23:10
+'Verificando Ter√ßa Feira 22:20 - 23:10
 '-----------------------------
 If verificaHorario("D35", "E35", "D36", "E36", i) Then
-   If Consolida("D35", "E35", "D36", "E36", i, linha, "TerÁa Feira", "22:20-23:10") Then
+   If Consolida("D35", "E35", "D36", "E36", i, linha, "Ter√ßa Feira", "22:20-23:10") Then
     linha = linha + 1
     End If
 End If
@@ -621,15 +611,15 @@ Function curso(dados As String) As String
 C = UCase(dados)
 Nome = ""
 If C Like "K*" Then
-    Nome = "Engenharia ElÈtrica"
+    Nome = "Engenharia El√©trica"
 ElseIf C Like "AU*" Then
     Nome = "Arquitetura e Urbanismo"
 ElseIf C Like "A*" Then
-    Nome = "AdministraÁ„o"
+    Nome = "Administra√ß√£o"
 ElseIf C Like "C*" Then
-    Nome = "CiÍncia Contabeis"
+    Nome = "Ci√™ncias Contabeis"
 ElseIf C Like "M*" Then
-    Nome = "ComunicaÁ„o Social: MultimÌdia"
+    Nome = "Comunica√ß√£o Social: Multim√≠dia"
 ElseIf C Like "D*" Then
     Nome = "Design de Produto"
 ElseIf C Like "J*" Then
@@ -637,23 +627,23 @@ ElseIf C Like "J*" Then
 ElseIf C Like "EC*" Then
     Nome = "Engenharia Civil"
 ElseIf C Like "C*" Then
-    Nome = "Engenharia de ComputaÁ„o"
+    Nome = "Engenharia de Computa√ß√£o"
 ElseIf C Like "EP*" Then
-    Nome = "Engenharia ProduÁ„o"
+    Nome = "Engenharia Produ√ß√£o"
 ElseIf C Like "EM*" Then
-    Nome = "Engenharia Mec‚nica"
+    Nome = "Engenharia Mec√¢nica"
 ElseIf C Like "P*" Then
-    Nome = "Engenharia Controle e AutomaÁ„o"
+    Nome = "Engenharia Controle e Automa√ß√£o"
 ElseIf C Like "JD*" Then
     Nome = "Jogos Digitais"
 ElseIf C Like "F*" Then
-    Nome = "ManunteÁ„o Industrial"
+    Nome = "Manunte√ß√£o Industrial"
 ElseIf C Like "Q*" Then
     Nome = "Rede de Computadores"
 ElseIf C Like "L*" Then
-    Nome = "SeguranÁ„o do Trabalho"
+    Nome = "Seguran√ßa do Trabalho"
 ElseIf C Like "I*" Then
-    Nome = "Sistemas de InformaÁ„o"
+    Nome = "Sistemas de Informa√ß√£o"
 Else
 Nome = "Sem Curso"
 End If
@@ -675,6 +665,39 @@ End Function
 
 
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+Sub Header()
+'
+' Header Macro
+'
 
+'
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "CURSO"
+    Range("B1").Select
+    ActiveCell.FormulaR1C1 = "C√ìD"
+    Range("C1").Select
+    ActiveCell.FormulaR1C1 = "DISCIPLINAS"
+    Range("D1").Select
+    ActiveCell.FormulaR1C1 = "PROFESSOR"
+    Range("E1").Select
+    ActiveCell.FormulaR1C1 = "TURMA"
+    Range("F1").Select
+    ActiveCell.FormulaR1C1 = "SALA"
+    Range("G1").Select
+    ActiveCell.FormulaR1C1 = "DIA DA SEMANA"
+    Range("H1").Select
+    ActiveCell.FormulaR1C1 = "HOR√ÅRIO"
+    Range("A1:B1").Select
+    Range("B1").Activate
+
+    Columns("A:A").ColumnWidth = 27.86
+    Columns("B:B").ColumnWidth = 11.14
+    Columns("C:C").ColumnWidth = 17.14
+    Columns("D:D").ColumnWidth = 32.71
+    Columns("E:E").ColumnWidth = 9.14
+    Columns("F:F").ColumnWidth = 9
+    Columns("G:G").ColumnWidth = 16.29
+    Columns("H:H").ColumnWidth = 11.43
+    Columns("A:H").Select
+    Selection.AutoFilter
 End Sub
