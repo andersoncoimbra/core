@@ -7,7 +7,7 @@ Set Work = Application.ActiveWorkbook
 Dim linha As Integer
 linha = 2
 
-'Indice da planilha para inicio da consolidaçço
+'Indice da planilha para inicio da consolidação
 indice = 5
 
 For i = indice To Work.Sheets.Count
@@ -58,6 +58,54 @@ If verificaHorario("B11", "C11", "B12", "C12", i) Then
     linha = linha + 1
     End If
 End If
+
+'Tarde
+'-----------------------------
+'Verificando Segunda Feira 13:10 - 14:00
+'-----------------------------
+If verificaHorario("B14", "C14", "B15", "C15", i) Then
+   If Consolida("B14", "C14", "B15", "C15", i, linha, "Segunda Feira", "13:10-14:00") Then
+    linha = linha + 1
+    End If
+End If
+'-----------------------------
+'Verificando Segunda Feira 14:00 - 14:50
+'-----------------------------
+If verificaHorario("B16", "C16", "B17", "C17", i) Then
+   If Consolida("B16", "C16", "B17", "C17", i, linha, "Segunda Feira", "14:00-14:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Segunda Feira 14:50 - 15:40
+'-----------------------------
+If verificaHorario("B18", "C18", "B19", "C19", i) Then
+   If Consolida("B18", "C18", "B19", "C19", i, linha, "Segunda Feira", "14:50-15:40") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Segunda Feira 16:00 - 16:50
+'-----------------------------
+If verificaHorario("B20", "C20", "B21", "C21", i) Then
+   If Consolida("B20", "C20", "B21", "C21", i, linha, "Segunda Feira", "16:00-16:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Segunda Feira 16:50 - 17:40
+'-----------------------------
+If verificaHorario("B22", "C22", "B23", "C23", i) Then
+   If Consolida("B22", "C22", "B23", "C23", i, linha, "Segunda Feira", "16:50-17:40") Then
+    linha = linha + 1
+    End If
+End If
+
+
+
 
 'Noite
 '-----------------------------
@@ -162,6 +210,55 @@ If verificaHorario("D11", "E11", "D12", "E12", i) Then
     End If
 End If
 
+'Tarde
+'-----------------------------
+'Verificando Terça Feira 13:10 - 14:00
+'-----------------------------
+If verificaHorario("D14", "E14", "D15", "E15", i) Then
+   If Consolida("D14", "E14", "D15", "E15", i, linha, "Terça Feira", "13:10-14:00") Then
+    linha = linha + 1
+    End If
+End If
+'-----------------------------
+'Verificando Terça Feira 14:00 - 14:50
+'-----------------------------
+If verificaHorario("D16", "E16", "D17", "E17", i) Then
+   If Consolida("D16", "E16", "D17", "E17", i, linha, "Terça Feira", "14:00-14:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Terça Feira 14:50 - 15:40
+'-----------------------------
+If verificaHorario("D18", "E18", "D19", "E19", i) Then
+   If Consolida("D18", "E18", "D19", "E19", i, linha, "Terça Feira", "14:50-15:40") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Terça Feira 16:00 - 16:50
+'-----------------------------
+If verificaHorario("D20", "E20", "D21", "E21", i) Then
+   If Consolida("D20", "E20", "D21", "E21", i, linha, "Terça Feira", "16:00-16:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Terça Feira 16:50 - 17:40
+'-----------------------------
+If verificaHorario("D22", "E22", "D23", "E23", i) Then
+   If Consolida("D22", "E22", "D23", "E23", i, linha, "Terça Feira", "16:50-17:40") Then
+    linha = linha + 1
+    End If
+End If
+
+
+
+
+
 'Noite
 '-----------------------------
 'Verificando Terça Feira 18:00 - 18:50
@@ -264,6 +361,55 @@ If verificaHorario("F11", "G11", "F12", "G12", i) Then
     linha = linha + 1
     End If
 End If
+
+'Tarde
+'-----------------------------
+'Verificando Quarta Feira 13:10 - 14:00
+'-----------------------------
+If verificaHorario("F14", "G14", "F15", "G15", i) Then
+   If Consolida("F14", "G14", "F15", "G15", i, linha, "Quarta Feira", "13:10-14:00") Then
+    linha = linha + 1
+    End If
+End If
+'-----------------------------
+'Verificando Quarta Feira 14:00 - 14:50
+'-----------------------------
+If verificaHorario("F16", "G16", "F17", "G17", i) Then
+   If Consolida("F16", "G16", "F17", "G17", i, linha, "Quarta Feira", "14:00-14:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Quarta Feira 14:50 - 15:40
+'-----------------------------
+If verificaHorario("F18", "G18", "F19", "G19", i) Then
+   If Consolida("F18", "G18", "F19", "G19", i, linha, "Quarta Feira", "14:50-15:40") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Quarta Feira 16:00 - 16:50
+'-----------------------------
+If verificaHorario("F20", "G20", "F21", "G21", i) Then
+   If Consolida("F20", "G20", "F21", "G21", i, linha, "Quarta Feira", "16:00-16:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Quarta Feira 16:50 - 17:40
+'-----------------------------
+If verificaHorario("F22", "G22", "F23", "G23", i) Then
+   If Consolida("F22", "G22", "F23", "G23", i, linha, "Quarta Feira", "16:50-17:40") Then
+    linha = linha + 1
+    End If
+End If
+
+
+
+
 
 'Noite
 '-----------------------------
@@ -368,6 +514,55 @@ If verificaHorario("H11", "I11", "H12", "I12", i) Then
     End If
 End If
 
+'Tarde
+'-----------------------------
+'Verificando Quinta Feira 13:10 - 14:00
+'-----------------------------
+If verificaHorario("H14", "I14", "H15", "I15", i) Then
+   If Consolida("H14", "I14", "H15", "I15", i, linha, "Quinta Feira", "13:10-14:00") Then
+    linha = linha + 1
+    End If
+End If
+'-----------------------------
+'Verificando Quinta Feira 14:00 - 14:50
+'-----------------------------
+If verificaHorario("H16", "I16", "H17", "I17", i) Then
+   If Consolida("H16", "I16", "H17", "I17", i, linha, "Quinta Feira", "14:00-14:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Quinta Feira 14:50 - 15:40
+'-----------------------------
+If verificaHorario("H18", "I18", "H19", "I19", i) Then
+   If Consolida("H18", "I18", "H19", "I19", i, linha, "Quinta Feira", "14:50-15:40") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Quinta Feira 16:00 - 16:50
+'-----------------------------
+If verificaHorario("H20", "I20", "H21", "I21", i) Then
+   If Consolida("H20", "I20", "H21", "I21", i, linha, "Quinta Feira", "16:00-16:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Quinta Feira 16:50 - 17:40
+'-----------------------------
+If verificaHorario("H22", "I22", "H23", "I23", i) Then
+   If Consolida("H22", "I22", "H23", "I23", i, linha, "Quinta Feira", "16:50-17:40") Then
+    linha = linha + 1
+    End If
+End If
+
+
+
+
+
 'Noite
 '-----------------------------
 'Verificando Quinta Feira 18:00 - 18:50
@@ -470,6 +665,55 @@ If verificaHorario("J11", "K11", "J12", "K12", i) Then
     End If
 End If
 
+'Tarde
+'-----------------------------
+'Verificando Sexta Feira 13:10 - 14:00
+'-----------------------------
+If verificaHorario("J14", "K14", "J15", "K15", i) Then
+   If Consolida("J14", "K14", "J15", "K15", i, linha, "Sexta Feira", "13:10-14:00") Then
+    linha = linha + 1
+    End If
+End If
+'-----------------------------
+'Verificando Sexta Feira 14:00 - 14:50
+'-----------------------------
+If verificaHorario("J16", "K16", "J17", "K17", i) Then
+   If Consolida("J16", "K16", "J17", "K17", i, linha, "Sexta Feira", "14:00-14:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Sexta Feira 14:50 - 15:40
+'-----------------------------
+If verificaHorario("J18", "K18", "J19", "K19", i) Then
+   If Consolida("J18", "K18", "J19", "K19", i, linha, "Sexta Feira", "14:50-15:40") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Sexta Feira 16:00 - 16:50
+'-----------------------------
+If verificaHorario("J20", "K20", "J21", "K21", i) Then
+   If Consolida("J20", "K20", "J21", "K21", i, linha, "Sexta Feira", "16:00-16:50") Then
+    linha = linha + 1
+    End If
+End If
+
+'-----------------------------
+'Verificando Sexta Feira 16:50 - 17:40
+'-----------------------------
+If verificaHorario("J22", "K22", "J23", "K23", i) Then
+   If Consolida("J22", "K22", "J23", "K23", i, linha, "Sexta Feira", "16:50-17:40") Then
+    linha = linha + 1
+    End If
+End If
+
+
+
+
+
 'Noite
 '-----------------------------
 'Verificando Sexta Feira 18:00 - 18:50
@@ -524,50 +768,50 @@ If verificaHorario("J35", "K35", "J36", "K36", i) Then
     End If
 End If
 
-'S?bado
+'Sábado
 '-----------------------------
 'Manha
 '-----------------------------
-'Verificando S?bado 08:00 - 08:50
+'Verificando Sábado 08:00 - 08:50
 '-----------------------------
 If verificaHorario("L3", "M3", "L4", "M4", i) Then
-    If Consolida("L3", "M3", "L4", "M4", i, linha, "S?bado", "08:00-08:50") Then
+    If Consolida("L3", "M3", "L4", "M4", i, linha, "Sábado", "08:00-08:50") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando S?bado 08:50 - 09:40
+'Verificando Sábado 08:50 - 09:40
 '-----------------------------
 If verificaHorario("L5", "M5", "L6", "M6", i) Then
-    If Consolida("L5", "M5", "L6", "M6", i, linha, "S?bado", "08:50-09:40") Then
+    If Consolida("L5", "M5", "L6", "M6", i, linha, "Sábado", "08:50-09:40") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'VVerificando S?bado 10:00 - 10:50
+'VVerificando Sábado 10:00 - 10:50
 '-----------------------------
 If verificaHorario("L7", "M7", "L8", "M8", i) Then
-   If Consolida("L7", "M7", "L8", "M8", i, linha, "S?bado", "10:00-10:50") Then
+   If Consolida("L7", "M7", "L8", "M8", i, linha, "Sábado", "10:00-10:50") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando S?bado 10:50 - 11:40
+'Verificando Sábado 10:50 - 11:40
 '-----------------------------
 If verificaHorario("L9", "M9", "L10", "M10", i) Then
-   If Consolida("L7", "M7", "L8", "M8", i, linha, "S?bado", "10:50-11:40") Then
+   If Consolida("L7", "M7", "L8", "M8", i, linha, "Sábado", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
 
 '-----------------------------
-'Verificando S?bado 11:40 - 12:30
+'Verificando Sábado 11:40 - 12:30
 '-----------------------------
 If verificaHorario("L11", "M11", "L12", "M12", i) Then
-   If Consolida("L11", "M11", "L12", "M12", i, linha, "S?bado", "11:40-12:30") Then
+   If Consolida("L11", "M11", "L12", "M12", i, linha, "Sábado", "11:40-12:30") Then
     linha = linha + 1
     End If
 End If
@@ -575,6 +819,7 @@ End If
 
 
 Next i
+
 
 End Sub
 
@@ -626,12 +871,14 @@ ElseIf C Like "J*" Then
     Nome = "Engenharia Ambiental"
 ElseIf C Like "EC*" Then
     Nome = "Engenharia Civil"
-ElseIf C Like "C*" Then
+ElseIf C Like "X*" Then
     Nome = "Engenharia de Computação"
 ElseIf C Like "EP*" Then
     Nome = "Engenharia Produção"
 ElseIf C Like "EM*" Then
     Nome = "Engenharia Mecânica"
+ElseIf C Like "T*" Then
+    Nome = "Engenharia de Telecomunicações"
 ElseIf C Like "P*" Then
     Nome = "Engenharia Controle e Automação"
 ElseIf C Like "JD*" Then
@@ -665,7 +912,7 @@ End Function
 
 
 
-Sub Header()
+Function Header()
 '
 ' Header Macro
 '
@@ -700,4 +947,8 @@ Sub Header()
     Columns("H:H").ColumnWidth = 11.43
     Columns("A:H").Select
     Selection.AutoFilter
-End Sub
+    Header = True
+End Function
+
+
+
