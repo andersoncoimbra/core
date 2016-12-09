@@ -1,4 +1,3 @@
-
 Public Sub Consolidado()
 Dim M As Worksheet
 Dim Work As Workbook
@@ -6,7 +5,7 @@ Set M = Sheets(1)
 Set Work = Application.ActiveWorkbook
 Dim linha As Integer
 linha = 2
-
+Header
 'Indice da planilha para inicio da consolidação
 indice = 5
 
@@ -45,7 +44,7 @@ End If
 'Verificando Segunda Feira 10:50 - 11:40
 '-----------------------------
 If verificaHorario("B9", "C9", "B10", "C10", i) Then
-   If Consolida("B7", "C7", "B8", "C8", i, linha, "Segunda Feira", "10:50-11:40") Then
+   If Consolida("B9", "C9", "B10", "C10", i, linha, "Segunda Feira", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
@@ -196,7 +195,7 @@ End If
 'Verificando Terça Feira 10:50 - 11:40
 '-----------------------------
 If verificaHorario("D9", "E9", "D10", "E10", i) Then
-   If Consolida("D7", "E7", "D8", "E8", i, linha, "Terça Feira", "10:50-11:40") Then
+   If Consolida("D9", "E9", "D10", "E10", i, linha, "Terça Feira", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
@@ -336,7 +335,7 @@ If verificaHorario("F5", "G5", "F6", "G6", i) Then
 End If
 
 '-----------------------------
-'VVerificando Quarta Feira 10:00 - 10:50
+'Verificando Quarta Feira 10:00 - 10:50
 '-----------------------------
 If verificaHorario("F7", "G7", "F8", "G8", i) Then
    If Consolida("F7", "G7", "F8", "G8", i, linha, "Quarta Feira", "10:00-10:50") Then
@@ -348,7 +347,7 @@ End If
 'Verificando Quarta Feira 10:50 - 11:40
 '-----------------------------
 If verificaHorario("F9", "G9", "F10", "G10", i) Then
-   If Consolida("F7", "G7", "F8", "G8", i, linha, "Quarta Feira", "10:50-11:40") Then
+   If Consolida("F9", "G9", "F10", "G10", i, linha, "Quarta Feira", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
@@ -488,7 +487,7 @@ If verificaHorario("H5", "I5", "H6", "I6", i) Then
 End If
 
 '-----------------------------
-'VVerificando Quinta Feira 10:00 - 10:50
+'Verificando Quinta Feira 10:00 - 10:50
 '-----------------------------
 If verificaHorario("H7", "I7", "H8", "I8", i) Then
    If Consolida("H7", "I7", "H8", "I8", i, linha, "Quinta Feira", "10:00-10:50") Then
@@ -500,7 +499,7 @@ End If
 'Verificando Quinta Feira 10:50 - 11:40
 '-----------------------------
 If verificaHorario("H9", "I9", "H10", "I10", i) Then
-   If Consolida("H7", "I7", "H8", "I8", i, linha, "Quinta Feira", "10:50-11:40") Then
+   If Consolida("H9", "I9", "H10", "I10", i, linha, "Quinta Feira", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
@@ -639,7 +638,7 @@ If verificaHorario("J5", "K5", "J6", "K6", i) Then
 End If
 
 '-----------------------------
-'VVerificando Sexta Feira 10:00 - 10:50
+'Verificando Sexta Feira 10:00 - 10:50
 '-----------------------------
 If verificaHorario("J7", "K7", "J8", "K8", i) Then
    If Consolida("J7", "K7", "J8", "K8", i, linha, "Sexta Feira", "10:00-10:50") Then
@@ -651,7 +650,7 @@ End If
 'Verificando Sexta Feira 10:50 - 11:40
 '-----------------------------
 If verificaHorario("J9", "K9", "J10", "K10", i) Then
-   If Consolida("J7", "K7", "J8", "K8", i, linha, "Sexta Feira", "10:50-11:40") Then
+   If Consolida("J9", "K9", "J10", "K10", i, linha, "Sexta Feira", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
@@ -790,7 +789,7 @@ If verificaHorario("L5", "M5", "L6", "M6", i) Then
 End If
 
 '-----------------------------
-'VVerificando Sábado 10:00 - 10:50
+'Verificando Sábado 10:00 - 10:50
 '-----------------------------
 If verificaHorario("L7", "M7", "L8", "M8", i) Then
    If Consolida("L7", "M7", "L8", "M8", i, linha, "Sábado", "10:00-10:50") Then
@@ -802,7 +801,7 @@ End If
 'Verificando Sábado 10:50 - 11:40
 '-----------------------------
 If verificaHorario("L9", "M9", "L10", "M10", i) Then
-   If Consolida("L7", "M7", "L8", "M8", i, linha, "Sábado", "10:50-11:40") Then
+   If Consolida("L9", "M9", "L10", "M10", i, linha, "Sábado", "10:50-11:40") Then
     linha = linha + 1
     End If
 End If
@@ -918,35 +917,36 @@ Function Header()
 '
 
 '
-    Range("A1").Select
-    ActiveCell.FormulaR1C1 = "CURSO"
-    Range("B1").Select
-    ActiveCell.FormulaR1C1 = "CÓD"
-    Range("C1").Select
-    ActiveCell.FormulaR1C1 = "DISCIPLINAS"
-    Range("D1").Select
-    ActiveCell.FormulaR1C1 = "PROFESSOR"
-    Range("E1").Select
-    ActiveCell.FormulaR1C1 = "TURMA"
-    Range("F1").Select
-    ActiveCell.FormulaR1C1 = "SALA"
-    Range("G1").Select
-    ActiveCell.FormulaR1C1 = "DIA DA SEMANA"
-    Range("H1").Select
-    ActiveCell.FormulaR1C1 = "HORÁRIO"
-    Range("A1:B1").Select
-    Range("B1").Activate
+ Dim M As Worksheet
+ Set M = Sheets(1)
+    
+     M.Range("A1").FormulaR1C1 = "CURSO"
+   
+     M.Range("B1").FormulaR1C1 = "CÓD"
+    
+     M.Range("C1").FormulaR1C1 = "DISCIPLINAS"
+    
+     M.Range("D1").FormulaR1C1 = "PROFESSOR"
+    
+     M.Range("E1").FormulaR1C1 = "TURMA"
+    
+     M.Range("F1").FormulaR1C1 = "SALA"
+   
+     M.Range("G1").FormulaR1C1 = "DIA DA SEMANA"
+    
+     M.Range("H1").FormulaR1C1 = "HORÁRIO"
+    
 
-    Columns("A:A").ColumnWidth = 27.86
-    Columns("B:B").ColumnWidth = 11.14
-    Columns("C:C").ColumnWidth = 17.14
-    Columns("D:D").ColumnWidth = 32.71
-    Columns("E:E").ColumnWidth = 9.14
-    Columns("F:F").ColumnWidth = 9
-    Columns("G:G").ColumnWidth = 16.29
-    Columns("H:H").ColumnWidth = 11.43
-    Columns("A:H").Select
-    Selection.AutoFilter
+     M.Columns("A:A").ColumnWidth = 27.86
+     M.Columns("B:B").ColumnWidth = 11.14
+     M.Columns("C:C").ColumnWidth = 17.14
+     M.Columns("D:D").ColumnWidth = 32.71
+     M.Columns("E:E").ColumnWidth = 9.14
+     M.Columns("F:F").ColumnWidth = 9
+     M.Columns("G:G").ColumnWidth = 16.29
+     M.Columns("H:H").ColumnWidth = 11.43
+     M.Columns("A:H").AutoFilter
+   
     Header = True
 End Function
 
