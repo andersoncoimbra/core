@@ -1,9 +1,18 @@
+
+Dim disciplinas As New Scripting.Dictionary
+
 Public Sub Consolidado()
 Dim M As Worksheet
 Dim Work As Workbook
 Set M = Sheets(1)
 Set Work = Application.ActiveWorkbook
 Dim linha As Integer
+
+'Set disciplinas = New Scripting.Dictionary
+
+'Carregar as disciplinas na coleção
+carregaDisciplinas
+
 linha = 2
 Header
 'Indice da planilha para inicio da consolidação
@@ -901,7 +910,7 @@ Function Consolida(codigodisciplina As String, Classe, periodo As String, discip
     Set M = Sheets(1)
     M.Cells(linha, 1).Value = curso(Worksheets(indicePlanilha).Range(Classe).Value)
     M.Cells(linha, 2).Value = UCase(Worksheets(indicePlanilha).Range(codigodisciplina).Value)
-    M.Cells(linha, 3).Value = Worksheets(indicePlanilha).Range(disciplina).Value
+    M.Cells(linha, 3).Value = getDisciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
     M.Cells(linha, 4).Value = Worksheets(indicePlanilha).Range("B1").Value
     M.Cells(linha, 5).Value = Turma(Worksheets(indicePlanilha).Range(Classe).Value)
     M.Cells(linha, 7).Value = diaDaSemana
@@ -950,5 +959,34 @@ Function Header()
     Header = True
 End Function
 
+Public Function carregaDisciplinas()
+ indicelinha = 3
+
+    Do While ((Sheets(2).Cells(indicelinha, 4).Value <> "" And Sheets(2).Cells(indicelinha, 5).Value <> "") Or (Sheets(2).Cells(indicelinha + 1, 4).Value <> "" And Sheets(2).Cells(indicelinha + 1, 5).Value <> ""))
+        Debug.Print Sheets(2).Cells(indicelinha, 4).Value
+        If disciplinas.Exists(Sheets(2).Cells(indicelinha, 4).Value) Then
+        Debug.Print "Valor já adicionado"
+        Else
+        Debug.Print Sheets(2).Cells(indicelinha, 5).Value
+            If (Sheets(2).Cells(indicelinha, 4).Value <> "" And Sheets(2).Cells(indicelinha, 5).Value <> "") Then
+            disciplinas.Add Sheets(2).Cells(indicelinha, 4).Value, Sheets(2).Cells(indicelinha, 5).Value
+            End If
+        End If
+     indicelinha = indicelinha + 1
+    Loop
+
+indicetabela = indicetabela + 1
 
 
+ Debug.Print disciplinas.Count
+
+End Function
+
+Function getDisciplina(codigo As String, alternativo As String) As String
+If disciplinas.Exists(codigo) Then
+    getDisciplina = disciplinas.Item(codigo)
+Else
+    getDisciplina = alternativo
+End If
+End Function
+'disciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
