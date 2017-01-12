@@ -13,6 +13,8 @@ Dim linha As Integer
 'Carregar as disciplinas na coleção
 carregaDisciplinas
 
+
+
 linha = 2
 Header
 'Indice da planilha para inicio da consolidação
@@ -911,7 +913,7 @@ Function Consolida(codigodisciplina As String, Classe, periodo As String, discip
     M.Cells(linha, 1).Value = curso(Worksheets(indicePlanilha).Range(Classe).Value)
     M.Cells(linha, 2).Value = UCase(Worksheets(indicePlanilha).Range(codigodisciplina).Value)
     M.Cells(linha, 3).Value = getDisciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
-    M.Cells(linha, 4).Value = Worksheets(indicePlanilha).Range("B1").Value
+    M.Cells(linha, 4).Value = Worksheets(indicePlanilha).Name
     M.Cells(linha, 5).Value = Turma(Worksheets(indicePlanilha).Range(Classe).Value)
     M.Cells(linha, 7).Value = diaDaSemana
     M.Cells(linha, 8).Value = horario
@@ -931,7 +933,7 @@ Function Header()
     
      M.Range("A1").FormulaR1C1 = "CURSO"
    
-     M.Range("B1").FormulaR1C1 = "CÓD"
+     M.Range("B1").FormulaR1C1 = "COD"
     
      M.Range("C1").FormulaR1C1 = "DISCIPLINAS"
     
@@ -961,6 +963,8 @@ End Function
 
 Public Function carregaDisciplinas()
  indicelinha = 3
+ 
+ Sheets(2).Cells(1, 9).Value = indicelinha
 
     Do While ((Sheets(2).Cells(indicelinha, 4).Value <> "" And Sheets(2).Cells(indicelinha, 5).Value <> "") Or (Sheets(2).Cells(indicelinha + 1, 4).Value <> "" And Sheets(2).Cells(indicelinha + 1, 5).Value <> ""))
         Debug.Print Sheets(2).Cells(indicelinha, 4).Value
@@ -983,10 +987,16 @@ indicetabela = indicetabela + 1
 End Function
 
 Function getDisciplina(codigo As String, alternativo As String) As String
-If disciplinas.Exists(codigo) Then
-    getDisciplina = disciplinas.Item(codigo)
+cod = UCase(codigo)
+If disciplinas.Exists(cod) Then
+    getDisciplina = disciplinas.Item(cod)
 Else
+    Debug.Print cod + " Alternativo - " + alternativo
     getDisciplina = alternativo
+    Sheets(2).Cells(Sheets(2).Cells(1, 9).Value, 7).Value = cod
+    Sheets(2).Cells(Sheets(2).Cells(1, 9).Value, 8).Value = alternativo
+    Sheets(2).Cells(1, 9).Value = Sheets(2).Cells(1, 9).Value + 1
 End If
 End Function
 'disciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
+
