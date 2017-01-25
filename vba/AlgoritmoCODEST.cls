@@ -1,5 +1,6 @@
 
 Dim disciplinas As New Scripting.Dictionary
+Dim combinados As New Scripting.Dictionary
 
 Public Sub Consolidado()
 Dim M As Worksheet
@@ -13,7 +14,8 @@ Dim linha As Integer
 'Carregar as disciplinas na coleção
 carregaDisciplinas
 
-
+'Carregar as combinados na coleção
+carregaCombinado
 
 linha = 2
 Header
@@ -910,13 +912,17 @@ End Function
 Function Consolida(codigodisciplina As String, Classe, periodo As String, disciplina As String, indicePlanilha, linha As Integer, diaDaSemana, horario) As Boolean
     Dim M As Worksheet
     Set M = Sheets(1)
+    periodo = ExtrairNumeros(Worksheets(indicePlanilha).Range(periodo).Value)
     M.Cells(linha, 1).Value = curso(Worksheets(indicePlanilha).Range(Classe).Value)
-    M.Cells(linha, 2).Value = UCase(Worksheets(indicePlanilha).Range(codigodisciplina).Value)
-    M.Cells(linha, 3).Value = getDisciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
-    M.Cells(linha, 4).Value = Worksheets(indicePlanilha).Name
-    M.Cells(linha, 5).Value = Turma(Worksheets(indicePlanilha).Range(Classe).Value)
-    M.Cells(linha, 7).Value = diaDaSemana
-    M.Cells(linha, 8).Value = horario
+    M.Cells(linha, 2).Value = periodo + " Periodo"
+    M.Cells(linha, 3).Value = "Turno"
+    M.Cells(linha, 4).Value = getcurriculo(getCodCurso(curso(Worksheets(indicePlanilha).Range(Classe).Value)), periodo, Worksheets(indicePlanilha).Range(codigodisciplina).Value)
+    M.Cells(linha, 5).Value = UCase(Worksheets(indicePlanilha).Range(codigodisciplina).Value)
+    M.Cells(linha, 6).Value = getDisciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
+    M.Cells(linha, 7).Value = Worksheets(indicePlanilha).Name
+    M.Cells(linha, 8).Value = Turma(Worksheets(indicePlanilha).Range(Classe).Value)
+    M.Cells(linha, 10).Value = diaDaSemana
+    M.Cells(linha, 11).Value = horario
     Consolida = True
 End Function
 
@@ -932,31 +938,37 @@ Function Header()
  Set M = Sheets(1)
     
      M.Range("A1").FormulaR1C1 = "CURSO"
+
+     M.Range("B1").FormulaR1C1 = "PERIODO"
+
+     M.Range("C1").FormulaR1C1 = "TURNO"
+
+     M.Range("D1").FormulaR1C1 = "CURRÍCULO"
    
-     M.Range("B1").FormulaR1C1 = "COD"
+     M.Range("E1").FormulaR1C1 = "COD"
     
-     M.Range("C1").FormulaR1C1 = "DISCIPLINAS"
+     M.Range("F1").FormulaR1C1 = "DISCIPLINAS"
     
-     M.Range("D1").FormulaR1C1 = "PROFESSOR"
+     M.Range("G1").FormulaR1C1 = "PROFESSOR"
     
-     M.Range("E1").FormulaR1C1 = "TURMA"
+     M.Range("H1").FormulaR1C1 = "TURMA"
     
-     M.Range("F1").FormulaR1C1 = "SALA"
+     M.Range("I1").FormulaR1C1 = "SALA"
    
-     M.Range("G1").FormulaR1C1 = "DIA DA SEMANA"
+     M.Range("J1").FormulaR1C1 = "DIA DA SEMANA"
     
-     M.Range("H1").FormulaR1C1 = "HORÁRIO"
+     M.Range("K1").FormulaR1C1 = "HORÁRIO"
     
 
      M.Columns("A:A").ColumnWidth = 27.86
-     M.Columns("B:B").ColumnWidth = 11.14
-     M.Columns("C:C").ColumnWidth = 17.14
-     M.Columns("D:D").ColumnWidth = 32.71
-     M.Columns("E:E").ColumnWidth = 9.14
-     M.Columns("F:F").ColumnWidth = 9
-     M.Columns("G:G").ColumnWidth = 16.29
-     M.Columns("H:H").ColumnWidth = 11.43
-     M.Columns("A:H").AutoFilter
+     M.Columns("E:E").ColumnWidth = 11.14
+     M.Columns("F:F").ColumnWidth = 17.14
+     M.Columns("G:G").ColumnWidth = 32.71
+     M.Columns("H:H").ColumnWidth = 9.14
+     M.Columns("I:I").ColumnWidth = 9
+     M.Columns("J:J").ColumnWidth = 16.29
+     M.Columns("K:K").ColumnWidth = 11.43
+     M.Columns("A:K").AutoFilter
    
     Header = True
 End Function
@@ -964,7 +976,7 @@ End Function
 Public Function carregaDisciplinas()
  indicelinha = 3
  
- Sheets(2).Cells(1, 9).Value = indicelinha
+ Sheets(2).Cells(1, 13).Value = indicelinha
 
     Do While ((Sheets(2).Cells(indicelinha, 4).Value <> "" And Sheets(2).Cells(indicelinha, 5).Value <> "") Or (Sheets(2).Cells(indicelinha + 1, 4).Value <> "" And Sheets(2).Cells(indicelinha + 1, 5).Value <> ""))
         Debug.Print Sheets(2).Cells(indicelinha, 4).Value
@@ -982,7 +994,31 @@ Public Function carregaDisciplinas()
 indicetabela = indicetabela + 1
 
 
- Debug.Print disciplinas.Count
+ Debug.Print "Disciplinas Total:" & disciplinas.Count
+
+End Function
+
+Public Function carregaCombinado()
+ indicelinha = 3
+ 
+ Sheets(2).Cells(1, 9).Value = indicelinha
+
+    Do While ((Sheets(2).Cells(indicelinha, 7).Value <> "" And Sheets(2).Cells(indicelinha, 8).Value <> "") Or (Sheets(2).Cells(indicelinha + 1, 7).Value <> "" And Sheets(2).Cells(indicelinha + 1, 8).Value <> ""))
+        Debug.Print Sheets(2).Cells(indicelinha, 7).Value
+        If combinados.Exists(Sheets(2).Cells(indicelinha, 7).Value) Then
+        Debug.Print "Valor já adicionado"
+        Else
+        Debug.Print Sheets(2).Cells(indicelinha, 5).Value
+            If (Sheets(2).Cells(indicelinha, 7).Value <> "" And Sheets(2).Cells(indicelinha, 8).Value <> "") Then
+            combinados.Add Sheets(2).Cells(indicelinha, 7).Value, Sheets(2).Cells(indicelinha, 8).Value
+            End If
+        End If
+     indicelinha = indicelinha + 1
+    Loop
+        indicetabela = indicetabela + 1
+
+
+        Debug.Print "Combinados Total:" & combinados.Count
 
 End Function
 
@@ -993,10 +1029,72 @@ If disciplinas.Exists(cod) Then
 Else
     Debug.Print cod + " Alternativo - " + alternativo
     getDisciplina = alternativo
-    Sheets(2).Cells(Sheets(2).Cells(1, 9).Value, 7).Value = cod
-    Sheets(2).Cells(Sheets(2).Cells(1, 9).Value, 8).Value = alternativo
-    Sheets(2).Cells(1, 9).Value = Sheets(2).Cells(1, 9).Value + 1
+    Sheets(2).Cells(Sheets(2).Cells(1, 13).Value, 11).Value = cod
+    Sheets(2).Cells(Sheets(2).Cells(1, 13).Value, 12).Value = alternativo
+    Sheets(2).Cells(1, 13).Value = Sheets(2).Cells(1, 13).Value + 1
 End If
 End Function
+
+Function getcurriculo(codigocurso As String, periodo As String, coddisciplina As String) As String
+codigo = codigocurso & periodo & coddisciplina
+   If combinados.Exists(UCase(codigo)) Then
+        getcurriculo = ExtrairNumeros(combinados.Item(UCase(codigo)))
+    Else
+    For i = 1 To 10
+    If combinados.Exists(UCase(codigocurso & i & coddisciplina)) Then
+    getcurriculo = ExtrairNumeros(combinados.Item(UCase(codigocurso & i & coddisciplina)))
+    End If
+    Next i
+    End If
+
+End Function
+
+Function getCodCurso(cod As String) As String
+
+Nome = ""
+If cod = "Engenharia Elétrica" Then
+    Nome = "K"
+ElseIf cod = "Arquitetura e Urbanismo" Then
+    Nome = "AU"
+ElseIf cod = "Administração" Then
+    Nome = "A"
+ElseIf cod = "Ciências Contabeis" Then
+    Nome = "C"
+ElseIf cod = "Comunicação Social: Multimídia" Then
+    Nome = "M"
+ElseIf cod = "Design de Produto" Then
+    Nome = "D"
+ElseIf cod = "Engenharia Ambiental" Then
+    Nome = "J"
+ElseIf cod = "Engenharia Civil" Then
+    Nome = "EC"
+ElseIf cod = "Engenharia de Computação" Then
+    Nome = "X"
+ElseIf cod = "Engenharia Produção" Then
+    Nome = "EP"
+ElseIf cod = "Engenharia Mecânica" Then
+    Nome = "EM"
+ElseIf cod = "Engenharia de Telecomunicações" Then
+    Nome = "T"
+ElseIf cod = "Engenharia Controle e Automação" Then
+    Nome = "P"
+ElseIf cod = "Jogos Digitais" Then
+    Nome = "JD"
+ElseIf cod = "Manunteção Industrial" Then
+    Nome = "F"
+ElseIf cod = "Rede de Computadores" Then
+    Nome = "Q"
+ElseIf cod = "Segurança do Trabalho" Then
+    Nome = "L"
+ElseIf cod = "Sistemas de Informação" Then
+    Nome = "I"
+Else
+Nome = ""
+End If
+getCodCurso = Nome
+
+End Function
 'disciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
+
+
 
