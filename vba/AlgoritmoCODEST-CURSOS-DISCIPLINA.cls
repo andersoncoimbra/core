@@ -22,7 +22,7 @@ indicelinha = 3
             disciplinas.Add Sheets(i).Cells(indicelinha, 3).Value, Sheets(i).Cells(indicelinha, 4).Value
             End If
         End If
-         combinado.Add Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value , Sheets(i).Cells(indicelinha, 1).Value&Sheets(i).Cells(indicelinha, 4).Value
+         combinado.Add Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value, Sheets(i).Cells(indicelinha, 1).Value & Sheets(i).Cells(indicelinha, 4).Value
      indicelinha = indicelinha + 1
     Loop
 

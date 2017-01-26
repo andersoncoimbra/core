@@ -629,6 +629,7 @@ If verificaHorario("H35", "I35", "H36", "I36", i) Then
     End If
 End If
 
+
 'Sexta Feira
 '-----------------------------
 'Manha
@@ -677,6 +678,7 @@ If verificaHorario("J11", "K11", "J12", "K12", i) Then
     End If
 End If
 
+
 'Tarde
 '-----------------------------
 'Verificando Sexta Feira 13:10 - 14:00
@@ -721,10 +723,6 @@ If verificaHorario("J22", "K22", "J23", "K23", i) Then
     linha = linha + 1
     End If
 End If
-
-
-
-
 
 'Noite
 '-----------------------------
@@ -879,8 +877,6 @@ ElseIf C Like "M*" Then
     Nome = "Comunicação Social: Multimídia"
 ElseIf C Like "D*" Then
     Nome = "Design de Produto"
-ElseIf C Like "J*" Then
-    Nome = "Engenharia Ambiental"
 ElseIf C Like "EC*" Then
     Nome = "Engenharia Civil"
 ElseIf C Like "X*" Then
@@ -903,19 +899,21 @@ ElseIf C Like "L*" Then
     Nome = "Segurança do Trabalho"
 ElseIf C Like "I*" Then
     Nome = "Sistemas de Informação"
+ElseIf C Like "J*" Then
+    Nome = "Engenharia Ambiental"
 Else
 Nome = "Sem Curso"
 End If
 curso = Nome
 End Function
 
-Function Consolida(codigodisciplina As String, Classe, periodo As String, disciplina As String, indicePlanilha, linha As Integer, diaDaSemana, horario) As Boolean
+Function Consolida(codigodisciplina As String, Classe, periodo As String, disciplina As String, indicePlanilha, linha As Integer, diaDaSemana, horario As String) As Boolean
     Dim M As Worksheet
     Set M = Sheets(1)
     periodo = ExtrairNumeros(Worksheets(indicePlanilha).Range(periodo).Value)
     M.Cells(linha, 1).Value = curso(Worksheets(indicePlanilha).Range(Classe).Value)
     M.Cells(linha, 2).Value = periodo + " Periodo"
-    M.Cells(linha, 3).Value = "Turno"
+    M.Cells(linha, 3).Value = getTurno(horario)
     M.Cells(linha, 4).Value = getcurriculo(getCodCurso(curso(Worksheets(indicePlanilha).Range(Classe).Value)), periodo, Worksheets(indicePlanilha).Range(codigodisciplina).Value)
     M.Cells(linha, 5).Value = UCase(Worksheets(indicePlanilha).Range(codigodisciplina).Value)
     M.Cells(linha, 6).Value = getDisciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
@@ -1040,10 +1038,10 @@ codigo = codigocurso & periodo & coddisciplina
    If combinados.Exists(UCase(codigo)) Then
         getcurriculo = ExtrairNumeros(combinados.Item(UCase(codigo)))
     Else
-    For i = 1 To 10
-    If combinados.Exists(UCase(codigocurso & i & coddisciplina)) Then
-    getcurriculo = ExtrairNumeros(combinados.Item(UCase(codigocurso & i & coddisciplina)))
-    End If
+        For i = 1 To 10
+        If combinados.Exists(UCase(codigocurso & i & coddisciplina)) Then
+        getcurriculo = ExtrairNumeros(combinados.Item(UCase(codigocurso & i & coddisciplina)))
+        End If
     Next i
     End If
 
@@ -1094,7 +1092,21 @@ End If
 getCodCurso = Nome
 
 End Function
+
+Function getTurno(horario As String) As String
+    Select Case horario
+   Case "08:00-08:50", "08:50-09:40", "10:00-10:50", "10:50-11:40", "11:40-12:30"
+      getTurno = "Matutino"
+   Case "13:10-14:00", "14:00-14:50", "14:50-15:40", "16:00-16:50", "16:50-17:40"
+     getTurno = "Vespetino"
+   Case "18:00-18:50", "18:50-19:40", "19:40-20:30", "20:40-21:30", "21:30-22:20", "22:20-23:10"
+    getTurno = "Noturno"
+  Case Else
+      getTurno = "#"
+End Select
+End Function
 'disciplina(Worksheets(indicePlanilha).Range(codigodisciplina).Value, Worksheets(indicePlanilha).Range(disciplina).Value)
+
 
 
 
