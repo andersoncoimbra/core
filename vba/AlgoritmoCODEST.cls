@@ -1021,7 +1021,7 @@ Public Function carregaCombinado()
 End Function
 
 Function getDisciplina(codigo As String, alternativo As String) As String
-cod = UCase(codigo)
+cod = UCase(Trim(codigo))
 If disciplinas.Exists(cod) Then
     getDisciplina = disciplinas.Item(cod)
 Else
@@ -1034,7 +1034,7 @@ End If
 End Function
 
 Function getcurriculo(codigocurso As String, periodo As String, coddisciplina As String) As String
-codigo = codigocurso & periodo & coddisciplina
+codigo = Trim(codigocurso) & Trim(periodo) & Trim(coddisciplina)
    If combinados.Exists(UCase(codigo)) Then
         getcurriculo = ExtrairNumeros(combinados.Item(UCase(codigo)))
     Else
