@@ -1,6 +1,4 @@
 
-
- 
 Public Sub getDisciplina()
 Dim disciplinas As Scripting.Dictionary
 Set disciplinas = New Scripting.Dictionary
@@ -13,16 +11,23 @@ For i = indicetabela To Worksheets.Count
 indicelinha = 3
 
     Do While ((Sheets(i).Cells(indicelinha, 3).Value <> "" And Sheets(i).Cells(indicelinha, 4).Value <> "") Or (Sheets(i).Cells(indicelinha + 1, 3).Value <> "" And Sheets(i).Cells(indicelinha + 1, 4).Value <> ""))
-        Debug.Print Sheets(i).Cells(indicelinha, 3).Value
+            Debug.Print Sheets(i).Cells(indicelinha, 3).Value
         If disciplinas.Exists(Sheets(i).Cells(indicelinha, 3).Value) Then
-        Debug.Print "Valor já adicionado"
+            Debug.Print "Disciplina já adicionado"
         Else
-        Debug.Print Sheets(i).Cells(indicelinha, 4).Value
-            If (Sheets(i).Cells(indicelinha, 3).Value <> "" And Sheets(i).Cells(indicelinha, 4).Value <> "") Then
-            disciplinas.Add Sheets(i).Cells(indicelinha, 3).Value, Sheets(i).Cells(indicelinha, 4).Value
-            End If
+            Debug.Print Sheets(i).Cells(indicelinha, 4).Value
+                If (Sheets(i).Cells(indicelinha, 3).Value <> "" And Sheets(i).Cells(indicelinha, 4).Value <> "") Then
+                disciplinas.Add Sheets(i).Cells(indicelinha, 3).Value, Sheets(i).Cells(indicelinha, 4).Value
+                End If
         End If
+        If combinado.Exists(Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value) Then
+            Debug.Print "Key Existente: " + Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value
+            Debug.Print "Valor Existente " + combinado(Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value) + " Combinado ja adicionado"
+        Else
          combinado.Add Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value, Sheets(i).Cells(indicelinha, 1).Value & Sheets(i).Cells(indicelinha, 4).Value
+         Debug.Print "Combinado adicionado: " + combinado(Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value)
+        Debug.Print "Combinado Key " + Sheets(i).Name & ExtrairNumeros(Sheets(i).Cells(indicelinha, 2).Value) & Sheets(i).Cells(indicelinha, 3).Value
+            End If
      indicelinha = indicelinha + 1
     Loop
 
@@ -65,9 +70,9 @@ End Function
     'For i = 1 To 10
 '    If combinados.Exists(UCase(codigocurso & i & coddisciplina)) Then
  '   getcurriculo = ExtrairNumeros(combinados.Item(UCase(codigocurso & i & coddisciplina)))
-  '  End If    
+  '  End If
    ' Next i
-  '  
+  '
  '   End If
 'Else
    ' If combinados.Exists(UCase(codigo)) Then
