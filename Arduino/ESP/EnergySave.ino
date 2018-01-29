@@ -48,7 +48,7 @@ void loop() {
 
    Serial.print("Requisição POST: ");
    // Mandando request em metodo post para a url http://api.elis.cf/registro
-   client.println("POST /registro HTTP/1.1");
+   client.println("POST /api/registro HTTP/1.1");
    client.println("Host: " + host);
    client.println("Accept: */*");
    client.println("Content-Type: application/x-www-form-urlencoded");
